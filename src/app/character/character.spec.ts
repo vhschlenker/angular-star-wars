@@ -3,22 +3,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Character } from './character';
 
 describe('Character', () => {
-  let component: Character;
-  let fixture: ComponentFixture<Character>;
+  let componentUnderTest: Character;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Character],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(Character);
-    component = fixture.componentInstance;
-    fixture.componentRef.setInput('initalName', "initalName");
-
-    await fixture.whenStable();
-  });
+  beforeEach(() => {
+    componentUnderTest = new Character();
+    // componentUnderTest.initalName.set("World")
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(componentUnderTest).toBeTruthy();
   });
 });

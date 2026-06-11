@@ -1,0 +1,10 @@
+<table>
+  <tbody>
+    @for (item of data(); track item) {
+      <tr>
+        <th scope="row">{{ item.name }}</th>
+        <td>Height: {{ item.height }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

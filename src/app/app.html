@@ -1,1 +1,2 @@
-<app-character [initalName]="'test'"></app-character>
+<app-selection-component (filter)="filter($event)" (fetch)="setData()"></app-selection-component>
+<app-table-component [data]="dataForTable()"></app-table-component>
