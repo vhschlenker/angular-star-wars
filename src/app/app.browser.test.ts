@@ -3,8 +3,6 @@ import { render } from 'vitest-browser-angular';
 import { App } from './app';
 import { Character } from './character';
 import { StarWarsService } from './star-wars-service';
-import { inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 const data: Character[] = [
@@ -16,6 +14,7 @@ const data: Character[] = [
     skin_color: 'fair',
     eye_color: 'blue',
     birth_year: '19BBY',
+    url: '',
   },
   {
     name: 'Leia Organa',
@@ -25,6 +24,7 @@ const data: Character[] = [
     skin_color: 'light',
     eye_color: 'brown',
     birth_year: '19BBY',
+    url: '',
   },
 ];
 
@@ -46,6 +46,6 @@ test('query elements', async () => {
   const screen = await render(App, {
     componentProviders: [{ provide: StarWarsService, useClass: FakeStarWarsService }],
   });
-  await screen.getByText("Fetch").click()
+  await screen.getByText('Fetch').click();
   await expect.element(screen.getByText('Leia Organa')).toBeVisible();
 });
