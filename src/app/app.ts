@@ -13,22 +13,32 @@ import { StarWarsService } from './star-wars-service';
 export class App {
   starWarsService = inject(StarWarsService);
 
-  data = signal<Character[]>([]);
+  dataFromService = signal<Character[]>([]);
 
-  filterTerm = signal('');
+  hairColoFilterValue = signal('');
+  nameFilterValue = signal('');
 
   dataForTable = computed(() => {
-      const term = this.filterTerm().toLowerCase();
-      return this.data().filter((i) => i.hair_color.toLowerCase().includes(term));
-    });
+    const currentHairFilterValue = this.hairColoFilterValue().toLowerCase();
+    const currentNameFilterValue = this.nameFilterValue().toLowerCase();
+    return this.dataFromService().filter(
+      (i) =>
+        i.hair_color.toLowerCase().includes(currentHairFilterValue) &&
+        i.name.toLowerCase().includes(currentNameFilterValue),
+    );
+  });
 
   setData() {
     this.starWarsService.getCharacters().subscribe((data) => {
-      this.data.set(data);
-    })
+      this.dataFromService.set(data);
+    });
   }
 
-  protected filter(hairColor: string) {
-    this.filterTerm.set(hairColor);
+  protected filterByHairColor(hairColor: string) {
+    this.hairColoFilterValue.set(hairColor);
+  }
+
+  protected filterByName(name: string) {
+    this.nameFilterValue.set(name);
   }
 }

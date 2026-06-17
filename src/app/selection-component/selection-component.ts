@@ -9,11 +9,12 @@ import { FormField } from '@angular/forms/signals';
 })
 export class SelectionComponent {
   fetch = output();
-  filter = output<string>();
+  selectHairColorFilter = output<string>()
+  inputNameFilter = output<string>();
   filterText = output<string>();
 
   protected onSelect($event: Event) {
-    this.filter.emit(($event.target as HTMLSelectElement).value);
+    this.selectHairColorFilter.emit(($event.target as HTMLSelectElement).value);
   }
 
   protected fetchData() {
@@ -21,6 +22,7 @@ export class SelectionComponent {
   }
 
   protected onTextInput($event: Event) {
-    this.filterText.emit(($event.target as HTMLInputElement).value);
+    const textFilterValue = ($event.target as HTMLInputElement).value;
+    this.inputNameFilter.emit(textFilterValue)
   }
 }
