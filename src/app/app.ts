@@ -13,27 +13,6 @@ import { StarWarsService } from './star-wars-service';
 export class App {
   starWarsService = inject(StarWarsService);
 
-  // data: Character[] = [
-  //   {
-  //     name: 'Luke Skywalker',
-  //     height: 172,
-  //     mass: 77,
-  //     hair_color: 'blond',
-  //     skin_color: 'fair',
-  //     eye_color: 'blue',
-  //     birth_year: '19BBY',
-  //   },
-  //   {
-  //     name: 'Leia Organa',
-  //     height: 150,
-  //     mass: 49,
-  //     hair_color: 'brown',
-  //     skin_color: 'light',
-  //     eye_color: 'brown',
-  //     birth_year: '19BBY',
-  //   },
-  // ];
-
   data = signal<Character[]>([]);
 
   filterTerm = signal('');

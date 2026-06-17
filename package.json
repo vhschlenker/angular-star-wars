@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --timeout=1_000"
+    "test": "ng test --timeout=1_000",
+    "browser-test": "ng run angular-star-wars:browser-test"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
