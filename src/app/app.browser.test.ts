@@ -2,6 +2,10 @@ import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { render } from 'vitest-browser-angular';
 import { App } from './app';
 import { Character } from './character';
+import { StarWarsService } from './star-wars-service';
+import { inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const data: Character[] = [
   {
@@ -24,6 +28,12 @@ const data: Character[] = [
   },
 ];
 
+class FakeStarWarsService {
+  getCharacters(): Observable<Character[]> {
+    return new BehaviorSubject(data);
+  }
+}
+
 beforeEach(() => {
   vi.useFakeTimers();
 });
@@ -33,6 +43,9 @@ afterEach(() => {
 });
 
 test('query elements', async () => {
-  const screen = await render(App, { providers: { } });
-  await expect.element(screen.getByText('character works!')).toBeVisible();
+  const screen = await render(App, {
+    componentProviders: [{ provide: StarWarsService, useClass: FakeStarWarsService }],
+  });
+  await screen.getByText("Fetch").click()
+  await expect.element(screen.getByText('Leia Organa')).toBeVisible();
 });

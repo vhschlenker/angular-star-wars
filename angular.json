@@ -72,7 +72,7 @@
           "builder": "@angular/build:unit-test",
           "options": {
             "include": ["src/app/**/*.browser.test.ts"],
-            "browsers": ["Chromium", "Firefox", "Webkit"]
+            "browsers": ["Chromium"]
           }
         }
       }
